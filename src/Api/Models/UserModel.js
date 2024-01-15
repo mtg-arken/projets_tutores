@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 const { isEmail, contains } = require("validator");
 const { Schema } = mongoose;
-//const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 
 const UserSchema = new Schema(
   {
-    username: {
+    userName: {
       type: String,
       required: [true, "user name is required"],
       unique: true,
-      minlength: [6, "Must be at least 6 characters long"],
+      //minlength: [4, "Must be at least 6 characters long"],
       maxlength: [12, "Must be no more than 12 characters long"],
       validate: {
         validator: (val) => !contains(val, " "),
@@ -17,12 +17,12 @@ const UserSchema = new Schema(
       },
     },
     cin: {
-      type: int,
+      type: String,
       required: true,
       unique: true,
       validate: {
         validator: function (v) {
-          return v.length === 8;
+          return /^\d+$/.test(v) && v.length === 8
         },
         message: (props) =>
           `${props.value} is not a valid cin number , it must be 8  long!`,
@@ -31,7 +31,7 @@ const UserSchema = new Schema(
     email: {
       type: String,
       required: [true, "email is required"],
-      unique: true,
+      //unique: true,
       validate: [isEmail, "Must be valid email address"],
     },
     password: {
@@ -61,11 +61,11 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
-/*
+
 UserSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
-*/
+
 module.exports = User = mongoose.model("User", UserSchema);

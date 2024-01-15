@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-const { isEmail, contains } = require("validator");
 const { Schema } = mongoose;
-//const bcrypt = require("bcrypt");
+const Problem = require("../Models/ProblemModel");
+const Rapport = require("../Models/RapportModel");
+
 
 const DossierSchema = new Schema(
   {
@@ -12,20 +13,38 @@ const DossierSchema = new Schema(
     },
     juge1: { type: mongoose.Types.ObjectId, ref: "User", required: true },
     juge2: { type: mongoose.Types.ObjectId, ref: "User", required: true },
-    problem: { type: mongoose.Types.ObjectId, ref: "Problem", required: true },
-    rapport: { type: mongoose.Types.ObjectId, ref: "Rapport", required: true },
-    date_debut: { type: Date, default: Date.now },
+    problem: { type: mongoose.Types.ObjectId, ref: "Problem" },
+    rapport: { type: mongoose.Types.ObjectId, ref: "Rapport" },
+    date_debut: { type: Date, default: Date.now, required: true },
     date_fin: { type: Date },
+    date_j :{ type: Date },
     valide: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
 
-/*
-UserSchema.pre("save", async function (next) {
-  const salt = await bcrypt.genSalt();
-  this.password = await bcrypt.hash(this.password, salt);
-  next();
+
+DossierSchema.pre("save", async function (next) {
+  try {
+    if (!this.problem) {
+      const newProblem = new Problem({
+        dossier: this._id,
+      });
+      await newProblem.save();
+      this.problem = newProblem._id;
+    }
+    if(!this.rapport){
+      const newRapport = new Rapport({
+        dossier: this._id,
+      });
+      await newRapport.save();
+      this.rapport = newRapport._id;
+
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
-*/
+
 module.exports = Dossier = mongoose.model("Dossier", DossierSchema);
