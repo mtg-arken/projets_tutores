@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'judge_login.dart' as judge;
+/*import 'package:flutter/material.dart';
+import 'Common_Pages/Login_Page.dart' as judge;
 import 'president_login.dart' as president;
 
 class UserTypeSelectionPage extends StatelessWidget {
@@ -21,7 +21,7 @@ class UserTypeSelectionPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildLoginButton(context, 'Judge Login', judge.JudgeLoginPage()),
+              _buildLoginButton(context, 'Judge Login', judge.LoginPage()),
               SizedBox(height: 20),
               _buildLoginButton(
                   context, 'President Login', president.PresidentLoginPage()),
@@ -44,3 +44,4 @@ class UserTypeSelectionPage extends StatelessWidget {
     );
   }
 }
+*/
