@@ -10,7 +10,8 @@ const DossierSchema = new Schema(
       type: String,
       required: [true, "reference is required "],
       unique: true,
-    },
+    },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+
     juge1: { type: mongoose.Types.ObjectId, ref: "User", required: true },
     juge2: { type: mongoose.Types.ObjectId, ref: "User", required: true },
     problem: { type: mongoose.Types.ObjectId, ref: "Problem" },
@@ -32,14 +33,6 @@ DossierSchema.pre("save", async function (next) {
       });
       await newProblem.save();
       this.problem = newProblem._id;
-    }
-    if(!this.rapport){
-      const newRapport = new Rapport({
-        dossier: this._id,
-      });
-      await newRapport.save();
-      this.rapport = newRapport._id;
-
     }
     next();
   } catch (error) {

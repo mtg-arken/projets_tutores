@@ -2,23 +2,6 @@ const Dossier = require("../Models/DossierModel");
 
 const mongoose = require("mongoose");
 
-const FindUserById = (id) => {
-  return User.findById(id).select("-password");
-};
-const FindUserByCin = (cin) => {
-  return User.findOne({ cin: cin });
-};
-const CreateNewUser = (Password, Email, UserName, Cin, Role, telephone) => {
-  return User.create({
-    userName: UserName,
-    password: Password,
-    email: Email,
-    cin: Cin,
-    role: Role,
-    telephone: telephone,
-  });
-};
-
 const CreateNewDossier = (reference, userID, JugeID) => {
   return Dossier.create({
     reference: reference,
@@ -30,8 +13,11 @@ const FindDossierById = (id) => {
   return Dossier.findById(id)
 };
 
-
+const FindDossierByIdJuge = (id) => {
+  return Dossier.find({juge2:id})
+};
 module.exports = {
   CreateNewDossier,
-  FindDossierById
+  FindDossierById,
+  FindDossierByIdJuge
 };

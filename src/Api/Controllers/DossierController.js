@@ -1,9 +1,4 @@
-const bcrypt = require("bcrypt");
-const {
-  createToken,
-  createRefreshToken,
-} = require("../../Config/GenerateToken");
-const { CreateNewDossier ,FindDossierById} = require("../Services/DossierService");
+const { CreateNewDossier ,FindDossierById ,FindDossierByIdJuge} = require("../Services/DossierService");
 const { FindUserById } = require("../Services/UserService");
 
 const CreateDossier = async (req, res) => {
@@ -14,14 +9,20 @@ const CreateDossier = async (req, res) => {
     if (!ExistingUser) {
       throw new Error("User not found ");
     }
-    if (ExistingUser.role != "President juge") {
+
+    if (ExistingUser.role != "President de chambre") {
       throw new Error("User not allowed to create dossier ");
     }
+
     const ExistingJuge = await FindUserById(JugeID);
     if (!ExistingJuge) {
       throw new Error("juge not found ");
     }
+    console.log('b')
+
     const dossier = await CreateNewDossier(reference, userID, JugeID);
+    console.log('c')
+
     return res.json(dossier);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -42,7 +43,18 @@ const FixDateJ = async (req, res) => {
     return res.status(400).json({ error: error.message });
   }
 };
+const GetJudgeDossiers =async (req,res)=>{
+  try {
+    const { JudgeId } = req.body;
+    const ExistingDossiers = await FindDossierByIdJuge(JudgeId);
+    return res.json(ExistingDossiers);
+  } catch (error) {
+    console.log(error.message)
+    return res.status(400).json({ error: error.message });
+  }
+}
 module.exports = {
   CreateDossier,
   FixDateJ,
+  GetJudgeDossiers
 };
