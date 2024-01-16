@@ -13,7 +13,22 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(
+          title,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Color.fromARGB(255, 5, 43, 75),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: onLogout,
+          ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -21,23 +36,33 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Color.fromARGB(255, 5, 43, 75),
               ),
-              child: Text('Drawer Header'),
+              child: Text(
+                'Tribunal',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text('Accueil'),
               onTap: () {
-                // Ajoutez ici les actions spécifiques à l'élément 1 du tiroir
+                // Ajoutez ici les actions spécifiques à la page d'accueil
+                print('Accueil sélectionné');
+                Navigator.pop(context);
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: Text('Compte'),
               onTap: () {
-                // Ajoutez ici les actions spécifiques à l'élément 2 du tiroir
+                // Ajoutez ici les actions spécifiques à la page du compte
+                print('Compte sélectionné');
+                Navigator.pop(context);
               },
             ),
-            // ... Ajoutez d'autres éléments du tiroir au besoin
           ],
         ),
       ),

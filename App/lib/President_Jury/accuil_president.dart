@@ -12,7 +12,7 @@ class AccueilPresidentPage extends StatelessWidget {
         },
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 100.0),
+        padding: EdgeInsets.only(top: 120.0),
         child: Center(
           child: Align(
             alignment: Alignment.center,
@@ -30,7 +30,7 @@ class AccueilPresidentPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       FractionallySizedBox(
-                        widthFactor: 0.8, // Ajustez selon vos besoins
+                        widthFactor: 0.8,
                         child: LogoButton(
                           imagePath: getImagePath(index),
                           onPressed: () {
@@ -43,7 +43,12 @@ class AccueilPresidentPage extends StatelessWidget {
                       SizedBox(height: 8.0),
                       Text(
                         getLabelText(index),
-                        style: TextStyle(fontSize: 21.0),
+                        style: TextStyle(
+                          fontSize: 19.0,
+                          color: const Color.fromARGB(
+                              255, 5, 43, 75), // Couleur bleue marine
+                          fontWeight: FontWeight.bold, // Police en gras
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -62,11 +67,11 @@ class AccueilPresidentPage extends StatelessWidget {
       case 0:
         return 'assets/images/dossiercad.png';
       case 1:
-        return 'assets/images/liste2.png';
+        return 'assets/images/listejuges.png';
       case 2:
         return 'assets/images/liste.png';
       case 3:
-        return 'assets/images/listejuges.png';
+        return 'assets/images/liste2.png';
       default:
         return '';
     }
@@ -77,11 +82,11 @@ class AccueilPresidentPage extends StatelessWidget {
       case 0:
         return 'créer Dossier ';
       case 1:
-        return 'Dossier non traités';
+        return 'Liste des Juges';
       case 2:
         return 'Dossier  traités';
       case 3:
-        return 'Liste des Juges';
+        return 'Dossier non traités';
       default:
         return '';
     }
