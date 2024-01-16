@@ -22,11 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-<<<<<<< Updated upstream
-      initialRoute: '/president',
-=======
-      initialRoute: '/juge', 
->>>>>>> Stashed changes
+      initialRoute: '/ListJuge',
       routes: {
         '/login': (context) => LoginPage(),
         '/president': (context) => AccueilPresident(),
