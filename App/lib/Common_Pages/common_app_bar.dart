@@ -35,7 +35,11 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           icon: Icon(Icons.logout),
-          onPressed: onLogout,
+          onPressed: () {
+            // Déconnexion et navigation vers la page de connexion
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/login', (route) => false);
+          },
         ),
       ],
       leading: shouldShowBackButton
