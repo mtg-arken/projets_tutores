@@ -33,16 +33,23 @@ const Register = async (req, res) => {
 const Login = async (req, res) => {
   try {
     const { Cin, Password } = req.body;
+    console.log(Cin, Password,'data')
 
     const user = await FindUserByCin(Cin);
+    console.log(user,'data1')
 
     if (!user) {
       throw new Error("Cin not found ");
     }
+    console.log(user.password,Password,'data3')
+
     const ExistingPassword = await bcrypt.compare(Password, user.password);
+    console.log(ExistingPassword,'data2')
+
     if (!ExistingPassword) {
       throw new Error("incorrect password");
     }
+
     const token = await createToken(user._id);
     const refreshToken = await createRefreshToken(user._id);
 
@@ -70,6 +77,7 @@ const Login = async (req, res) => {
     });
     return;
   } catch (err) {
+    console.log(err.message)
     return res.status(400).json({ error: err.message });
   }
 };
