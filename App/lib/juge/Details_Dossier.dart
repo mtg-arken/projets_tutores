@@ -10,11 +10,11 @@ class _EmptyPageState extends State<DtailsDossier> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DtailsDossier'),
+        title: Text('Détailes Dossier'),
       ),
       body: Container(
-        // You can customize the container if needed
-      ),
+          // You can customize the container if needed
+          ),
     );
   }
 }

@@ -14,7 +14,7 @@ class _CreateDossierState extends State<CreateDossier> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(
-        title: 'Accueil Président',
+        title: 'Création dossiers',
         onLogout: () {},
       ),
       body: Center(

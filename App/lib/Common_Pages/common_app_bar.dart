@@ -16,6 +16,11 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    String currentRoute = ModalRoute.of(context)!.settings.name ?? "";
+
+    // Modifier showBackButton en fonction du chemin actuel
+    bool shouldShowBackButton = showBackButton && currentRoute != "/president";
+
     return AppBar(
       title: Text(
         title,
@@ -33,7 +38,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: onLogout,
         ),
       ],
-      leading: showBackButton
+      leading: shouldShowBackButton
           ? IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
