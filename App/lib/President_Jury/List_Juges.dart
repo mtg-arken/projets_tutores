@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import '../Common_Pages/common_app_bar.dart';
 
 class ListJuge extends StatefulWidget {
   @override
-  _EmptyPageState createState() => _EmptyPageState();
+  _ListJugeState createState() => _ListJugeState();
 }
 
-class _EmptyPageState extends State<ListJuge> {
+class _ListJugeState extends State<ListJuge> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ListJuge'),
+      appBar: CommonAppBar(
+        title: 'ListJuge',
+        onLogout: () {
+          // Ajouter la logique de déconnexion ici
+        },
       ),
       body: Container(
-        // You can customize the container if needed
-      ),
+          // Vous pouvez personnaliser le conteneur si nécessaire
+          ),
     );
   }
 }

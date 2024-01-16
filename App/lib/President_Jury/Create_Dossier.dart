@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import '../Common_Pages/common_app_bar.dart';
 
 class CreateDossier extends StatefulWidget {
   @override
-  _EmptyPageState createState() => _EmptyPageState();
+  _CreateDossierState createState() => _CreateDossierState();
 }
 
-class _EmptyPageState extends State<CreateDossier> {
+class _CreateDossierState extends State<CreateDossier> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('CreateDossier'),
+      appBar: CommonAppBar(
+        title: 'CreateDossier',
+        onLogout: () {
+          // Ajouter la logique de déconnexion ici
+        },
       ),
       body: Container(
-        // You can customize the container if needed
-      ),
+          // Vous pouvez personnaliser le conteneur si nécessaire
+          ),
     );
   }
 }

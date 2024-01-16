@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import '../Common_Pages/common_app_bar.dart';
+import 'List_Dossiers_Non_Validers.dart';
+import 'list_Dossiers_validers.dart';
+import 'list_juges.dart';
+import 'Create_Dossier.dart';
 
 class AccueilPresident extends StatelessWidget {
   @override
@@ -7,8 +11,7 @@ class AccueilPresident extends StatelessWidget {
     return Scaffold(
       appBar: CommonAppBar(
         title: 'Accueil Président',
-        onLogout: () {
-        },
+        onLogout: () {},
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 120.0),
@@ -42,9 +45,8 @@ class AccueilPresident extends StatelessWidget {
                         getLabelText(index),
                         style: TextStyle(
                           fontSize: 19.0,
-                          color: const Color.fromARGB(
-                              255, 5, 43, 75), 
-                          fontWeight: FontWeight.bold, 
+                          color: const Color.fromARGB(255, 5, 43, 75),
+                          fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -99,7 +101,31 @@ class LogoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: () {
+        if (imagePath == 'assets/images/dossiercad.png') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CreateDossier()),
+          );
+        } else if (imagePath == 'assets/images/liste.png') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ListDossierValider()),
+          );
+        } else if (imagePath == 'assets/images/liste2.png') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ListDossierNonValider()),
+          );
+        } else if (imagePath == 'assets/images/listejuges.png') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ListJuge()),
+          );
+        } else {
+          onPressed();
+        }
+      },
       child: Image.asset(
         imagePath,
         height: 100.0,

@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import '../Common_Pages/common_app_bar.dart';
 
 class ListDossierValider extends StatefulWidget {
   @override
-  _EmptyPageState createState() => _EmptyPageState();
+  _ListDossierValiderState createState() => _ListDossierValiderState();
 }
 
-class _EmptyPageState extends State<ListDossierValider> {
+class _ListDossierValiderState extends State<ListDossierValider> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ListDossierValider'),
+      appBar: CommonAppBar(
+        title: 'ListDossierValider',
+        onLogout: () {
+          // Ajouter la logique de déconnexion ici
+        },
       ),
       body: Container(
-        // You can customize the container if needed
-      ),
+          // Vous pouvez personnaliser le conteneur si nécessaire
+          ),
     );
   }
 }

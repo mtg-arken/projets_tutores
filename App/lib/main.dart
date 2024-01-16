@@ -4,12 +4,11 @@ import 'Common_Pages/login_Page.dart';
 import 'juge/accueil_juge.dart';
 import 'juge/Details_Dossier.dart';
 
-
 import 'President_Jury/accueil_president.dart';
 import 'President_Jury/Create_Dossier.dart';
 import 'President_Jury/List_Dossiers_Non_Validers.dart';
 import 'President_Jury/List_Dossiers_Validers.dart';
-import 'President_Jury/List_Juge.dart';
+import 'President_Jury/List_Juges.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/login', 
+      initialRoute: '/president',
       routes: {
         '/login': (context) => LoginPage(),
         '/president': (context) => AccueilPresident(),
@@ -31,7 +30,6 @@ class MyApp extends StatelessWidget {
         '/ListDossierValider': (context) => ListDossierValider(),
         '/ListDossierNonValider': (context) => ListDossierNonValider(),
         '/ListJuge': (context) => ListJuge(),
-
         '/juge': (context) => AccueilJuge(),
         '/DtailsDossier': (context) => DtailsDossier(),
       },
