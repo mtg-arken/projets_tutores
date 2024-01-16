@@ -61,6 +61,15 @@ flutter:
   assets:
         - assets/images/judge_icon.jpg
         - assets/images/login_avatar_head.png
+        - assets/images/liste2.png
+        - assets/images/listejuges.png
+        - assets/images/dossiercad.png
+        - assets/images/liste.png
+        - assets/images/listeDossiers.png
+
+
+
+
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

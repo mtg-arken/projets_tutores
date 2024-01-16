@@ -1,24 +1,21 @@
-// common_app_bar.dart
-
 import 'package:flutter/material.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback onLogout;
 
-  CommonAppBar({required this.title, required this.onLogout});
+  const CommonAppBar({required this.title, required this.onLogout});
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: Text(title),
-      actions: [
-        IconButton(
-          icon: Icon(Icons.exit_to_app),
-          onPressed: onLogout,
-        ),
-      ],
-      /*drawer: Drawer(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -26,34 +23,28 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
+              child: Text('Drawer Header'),
             ),
             ListTile(
-              title: Text('Option 1'),
+              title: Text('Item 1'),
               onTap: () {
-                // Ajouter la logique pour la première option du tiroir ici
-                Navigator.pop(context);
+                // Ajoutez ici les actions spécifiques à l'élément 1 du tiroir
               },
             ),
             ListTile(
-              title: Text('Option 2'),
+              title: Text('Item 2'),
               onTap: () {
-                // Ajouter la logique pour la deuxième option du tiroir ici
-                Navigator.pop(context);
+                // Ajoutez ici les actions spécifiques à l'élément 2 du tiroir
               },
             ),
+            // ... Ajoutez d'autres éléments du tiroir au besoin
           ],
         ),
-      ),*/
+      ),
+      body: Center(
+        child: Text('Contenu de la page'),
+        // Ajoutez ici le contenu de la page
+      ),
     );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }
