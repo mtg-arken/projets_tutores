@@ -1,5 +1,5 @@
 /*import 'package:flutter/material.dart';
-import 'Common_Pages/Login_Page.dart' as judge;
+import 'Common_Pages/Login_Page.dart' as juge;
 import 'president_login.dart' as president;
 
 class UserTypeSelectionPage extends StatelessWidget {
@@ -21,7 +21,7 @@ class UserTypeSelectionPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildLoginButton(context, 'Judge Login', judge.LoginPage()),
+              _buildLoginButton(context, 'juge Login', juge.LoginPage()),
               SizedBox(height: 20),
               _buildLoginButton(
                   context, 'President Login', president.PresidentLoginPage()),

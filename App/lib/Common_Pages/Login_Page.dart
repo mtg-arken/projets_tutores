@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 class LoginPage extends StatelessWidget {
   void _login(BuildContext context) async {
     String cin = _cinValue.text;
@@ -10,7 +9,6 @@ class LoginPage extends StatelessWidget {
 
     print('CIN: $cin, Password: $password');
     try {
-      // Make the API call
       final response = await http.post(
         Uri.parse('http://10.0.2.2:5000/api/auth/Login'),
         body: jsonEncode({
@@ -22,15 +20,12 @@ class LoginPage extends StatelessWidget {
 
       if (response.statusCode== 201) {
         var responseData = jsonDecode(response.body);
-        print('API Response: $responseData');
-        print( responseData['user']['role']);
-        if(responseData['user']['role']=='jury'){
+        if(responseData['user']['role']=='juge'){
           Navigator.pushReplacementNamed(context, '/juge');
         }
         else{
            Navigator.pushReplacementNamed(context, '/president');
         }
-        
       } else {
         print('Error: ${response.statusCode}, ${response.reasonPhrase}');
       }
@@ -48,7 +43,7 @@ class LoginPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/judge_icon.jpg'),
+            image: AssetImage('assets/images/juge_icon.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -129,7 +124,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () => _login(context), // Call the _login function
+                    onPressed: () => _login(context),
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.all(16),
                     ),

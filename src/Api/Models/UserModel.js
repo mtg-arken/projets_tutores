@@ -53,7 +53,7 @@ const UserSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["jury", "chef jury"],
+      enum: ["juge", "President juge"],
       required: true,
     },
     //region: {},

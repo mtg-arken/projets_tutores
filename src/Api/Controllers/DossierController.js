@@ -14,7 +14,7 @@ const CreateDossier = async (req, res) => {
     if (!ExistingUser) {
       throw new Error("User not found ");
     }
-    if (ExistingUser.role != "chef jury") {
+    if (ExistingUser.role != "President juge") {
       throw new Error("User not allowed to create dossier ");
     }
     const ExistingJuge = await FindUserById(JugeID);
