@@ -14,7 +14,9 @@ const ProblemSchema = new Schema(
     },
     description: {
       type: String,
-      required:true
+      required: function () {
+        return this.problem === true
+      },
     },
     date_audiance: {
       type: Date,

@@ -8,7 +8,6 @@ const { CreateNewUser, FindUserByCin } = require("../Services/UserService");
 const Register = async (req, res) => {
   try {
     const { UserName, Cin, Email, Telephone, Password, Role } = req.body;
-    console.log(Cin.length,Cin)
     if (!(Password && Email && UserName && Cin && Role && Telephone)) {
       throw new Error("All inputs required");
     }
@@ -33,27 +32,17 @@ const Register = async (req, res) => {
 const Login = async (req, res) => {
   try {
     const { Cin, Password } = req.body;
-    console.log(Cin, Password,'data')
-
     const user = await FindUserByCin(Cin);
-    console.log(user,'data1')
-
     if (!user) {
       throw new Error("Cin not found ");
     }
-    console.log(user.password,Password,'data3')
-
     const ExistingPassword = await bcrypt.compare(Password, user.password);
-    console.log(ExistingPassword,'data2')
-
     if (!ExistingPassword) {
       throw new Error("incorrect password");
     }
-
     const token = await createToken(user._id);
     const refreshToken = await createRefreshToken(user._id);
-
-    res.cookie("token", token, {
+    /*res.cookie("token", token, {
       httpOnly: true,
       secure: true,
       sameSite: "none",
@@ -64,7 +53,7 @@ const Login = async (req, res) => {
       secure: true,
       sameSite: "none",
       maxAge: 1 * 24 * 60 * 60 * 1000,
-    });
+    });*/
     res.status(201).json({
       user: {
         userName: user.userName,

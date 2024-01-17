@@ -19,7 +19,6 @@ const DeclareProblem = async (req, res) => {
     ExistingProblem.problem = true;
     ExistingProblem.problemType = problemType;
     ExistingProblem.description = description;
-    console.log("problemType:", problemType);
     problemType === "audiance"
       ? (ExistingProblem.date_audiance = new Date(date_prob))
       
