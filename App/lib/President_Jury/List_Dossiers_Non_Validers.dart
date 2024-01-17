@@ -12,7 +12,10 @@ class _ListDossierNonValiderState extends State<ListDossierNonValider> {
     return Scaffold(
       appBar: CommonAppBar(
         title: ' Dossiers Non Valides',
-        onLogout: () {},
+        onLogout: () {
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/login', (route) => false);
+        },
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import '../President_Jury/accueil_president.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback onLogout;
-  final bool showBackButton; // Ajout de la condition
 
   const CommonAppBar({
     required this.title,
     required this.onLogout,
-    this.showBackButton = true, // Initialisation de la condition
   });
 
   @override
@@ -19,7 +18,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     String currentRoute = ModalRoute.of(context)!.settings.name ?? "";
 
     // Modifier showBackButton en fonction du chemin actuel
-    bool shouldShowBackButton = showBackButton && currentRoute != "/president";
+    bool shouldShowBackButton = currentRoute != "/president";
 
     return AppBar(
       title: Text(
@@ -35,22 +34,26 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           icon: Icon(Icons.logout),
-          onPressed: () {
-            // Déconnexion et navigation vers la page de connexion
-            Navigator.pushNamedAndRemoveUntil(
-                context, '/login', (route) => false);
-          },
+          onPressed: onLogout,
         ),
       ],
       leading: shouldShowBackButton
           ? IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                // Retour à la page AccueilPresident
-                Navigator.pop(context);
+                // if (currentRoute == "/president") {
+                //   // Navigate to the home screen of the president
+                //   Navigator.pushReplacementNamed(context, '/president');
+                // } else {
+                //   // Default behavior for other routes
+                //   Navigator.pop(context);
+                // }
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (context) => AccueilPresident()));
+                Navigator.pushReplacementNamed(context, '/president');
               },
             )
-          : null, // Utilisation de null pour masquer le bouton si showBackButton est faux
+          : null,
     );
   }
 }

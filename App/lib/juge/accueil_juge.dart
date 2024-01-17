@@ -19,14 +19,12 @@ class _AccueilJugeState extends State<AccueilJuge> {
     // Replace the API call with your actual API endpoint and logic
     // For example purposes, we're using a dummy API call here
     await Future.delayed(Duration(seconds: 2));
-    
-    // Replace the dummy data with the actual fetched data
+
     setState(() {
       data = [
         {'refs': 'Ref1', 'description': 'Description 1'},
         {'refs': 'Ref2', 'description': 'Description 2'},
         {'refs': 'Ref3', 'description': 'Description 3'},
-        // Add more data as needed
       ];
     });
   }

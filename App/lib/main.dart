@@ -22,11 +22,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/president',
+      initialRoute: '/CreateDossier',
       routes: {
         '/login': (context) => LoginPage(),
         '/president': (context) => AccueilPresident(),
-        '/CrateDossier': (context) => CreateDossier(),
+        '/CreateDossier': (context) => CreateDossier(),
         '/ListDossierValider': (context) => ListDossierValider(),
         '/ListDossierNonValider': (context) => ListDossierNonValider(),
         '/ListJuge': (context) => ListJuge(),

@@ -13,7 +13,8 @@ class _ListDossierValiderState extends State<ListDossierValider> {
       appBar: CommonAppBar(
         title: 'ListDossierValider',
         onLogout: () {
-          // Ajouter la logique de déconnexion ici
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/login', (route) => false);
         },
       ),
       body: Container(

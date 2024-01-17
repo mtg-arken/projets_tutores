@@ -11,7 +11,10 @@ class AccueilPresident extends StatelessWidget {
     return Scaffold(
       appBar: CommonAppBar(
         title: 'Accueil Président',
-        onLogout: () {},
+        onLogout: () {
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/login', (route) => false);
+        },
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 120.0),
