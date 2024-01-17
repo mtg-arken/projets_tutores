@@ -23,20 +23,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      initialRoute: '/juge',
-=======
 
-      initialRoute: '/juge', 
->>>>>>> Stashed changes
-=======
-      initialRoute: '/ListDossierNonValider',
->>>>>>> Stashed changes
-=======
+
       initialRoute: '/juge',
->>>>>>> Stashed changes
+
       routes: {
         '/login': (context) => LoginPage(),
 
@@ -45,14 +35,10 @@ class MyApp extends StatelessWidget {
         '/ListDossierValider': (context) => ListDossierValider(),
         '/ListDossierNonValider': (context) => ListDossierNonValider(),
         '/ListJuge': (context) => ListJuge(),
-
+        
         '/juge': (context) => AccueilJuge(),
-<<<<<<< Updated upstream
         '/DtailsDossier': (context) => DetailsDossier(refs:''),
-=======
-        '/DtailsDossier': (context) => DtailsDossier(),
         '/DetailsDossierPre': (context) => DetailsDossierPre(),
->>>>>>> Stashed changes
       },
       debugShowCheckedModeBanner: false,
     );

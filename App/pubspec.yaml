@@ -32,6 +32,8 @@ dependencies:
     sdk: flutter
   http: ^1.1.2
   cupertino_icons: ^1.0.2
+  datetime_picker_formfield: ^2.0.0
+
 
 
 

@@ -16,8 +16,9 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     String currentRoute = ModalRoute.of(context)!.settings.name ?? "";
 
-    // Modifier showBackButton en fonction du chemin actuel
-    bool shouldShowBackButton = currentRoute != "/president";
+    // Check if the current route is neither "/president" nor "/juge"
+    bool shouldShowBackButton =
+        currentRoute != "/president" && currentRoute != "/juge";
 
     return AppBar(
       title: Text(
@@ -40,16 +41,8 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                // if (currentRoute == "/president") {
-                //   // Navigate to the home screen of the president
-                //   Navigator.pushReplacementNamed(context, '/president');
-                // } else {
-                //   // Default behavior for other routes
-                //   Navigator.pop(context);
-                // }
-                // Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (context) => AccueilPresident()));
-                Navigator.pushReplacementNamed(context, '/president');
+                // Navigate back to the previous screen
+                Navigator.pop(context);
               },
             )
           : null,
