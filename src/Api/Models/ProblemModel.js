@@ -7,7 +7,7 @@ const ProblemSchema = new Schema(
     problem: { type: Boolean, default: false },
     problemType: {
       type: String,
-      enum: ["audiance", "negociation"],
+      enum: ["visite", "temoiage"],
       required: function () {
         return this.problem === true;
       },

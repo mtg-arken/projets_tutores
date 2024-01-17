@@ -12,7 +12,7 @@ const CreateDossier = async (req, res) => {
     const userID = req.params.userID;
     const ExistingUser = await FindUserById(userID);
     if (!ExistingUser) {
-      throw new Error("User not found ");
+      throw new Error("president de chambre not found ");
     }
     if (ExistingUser.role != "President de chambre") {
       throw new Error("User not allowed to create dossier ");
@@ -62,6 +62,7 @@ const GetDossierByRef = async (req, res) => {
     if (!ExistingDossier) {
       throw new Error("Dossier not found ");
     }
+    
     if (ExistingDossier.problem.problem) {
       res.json({
         President_Chambre: ExistingDossier.juge1.userName,

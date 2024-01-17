@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       ),
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       initialRoute: '/juge',
 =======
 
@@ -33,13 +34,18 @@ class MyApp extends StatelessWidget {
 =======
       initialRoute: '/ListDossierNonValider',
 >>>>>>> Stashed changes
+=======
+      initialRoute: '/juge',
+>>>>>>> Stashed changes
       routes: {
         '/login': (context) => LoginPage(),
+
         '/president': (context) => AccueilPresident(),
         '/CreateDossier': (context) => CreateDossier(),
         '/ListDossierValider': (context) => ListDossierValider(),
         '/ListDossierNonValider': (context) => ListDossierNonValider(),
         '/ListJuge': (context) => ListJuge(),
+
         '/juge': (context) => AccueilJuge(),
 <<<<<<< Updated upstream
         '/DtailsDossier': (context) => DetailsDossier(refs:''),

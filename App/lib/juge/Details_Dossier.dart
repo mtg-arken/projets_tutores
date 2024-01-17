@@ -58,14 +58,6 @@ class _DetailsDossierState extends State<DetailsDossier> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< Updated upstream
-      appBar: AppBar(
-        title: Text('Détailes Dossier'),
-      ),
-      body: Container(
-          // You can customize the container if needed
-          ),
-=======
       appBar: CommonAppBar(
         title: 'Details dossier',
         onLogout: () {
@@ -104,7 +96,6 @@ class _DetailsDossierState extends State<DetailsDossier> {
           ],
         ),
       ),
->>>>>>> Stashed changes
     );
   }
 }

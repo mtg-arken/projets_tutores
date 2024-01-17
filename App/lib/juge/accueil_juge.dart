@@ -21,15 +21,10 @@ class _AccueilJugeState extends State<AccueilJuge> {
 
     setState(() {
       data = [
-<<<<<<< Updated upstream
-        {'refs': 'Ref1', 'description': 'Description 1'},
-        {'refs': 'Ref2', 'description': 'Description 2'},
-        {'refs': 'Ref3', 'description': 'Description 3'},
-=======
         {'refs': 'n1', 'description': 'Description 1'},
         {'refs': 'n2', 'description': 'Description 2'},
         {'refs': 'n3', 'description': 'Description 3'},
->>>>>>> Stashed changes
+
       ];
     });
   }
