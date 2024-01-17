@@ -22,15 +22,14 @@ class _ListDossierNonValiderState extends State<ListDossierNonValider> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Title
             Container(
               margin: EdgeInsets.only(bottom: 8.0),
               padding: EdgeInsets.only(bottom: 8.0),
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                    color: Colors.blue, // Underline color
-                    width: 2.0, // Underline thickness
+                    color: Colors.blue,
+                    width: 2.0,
                   ),
                 ),
               ),
@@ -39,19 +38,17 @@ class _ListDossierNonValiderState extends State<ListDossierNonValider> {
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
-                  color: const Color.fromARGB(
-                      255, 5, 43, 75), // Color for the title text
+                  color: const Color.fromARGB(255, 5, 43, 75),
                 ),
               ),
             ),
-            // DataTable
             Material(
               elevation: 8.0,
               borderRadius: BorderRadius.circular(20.0),
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.grey, // Color for the table border
+                    color: Colors.grey,
                   ),
                   borderRadius: BorderRadius.circular(20.0),
                 ),
@@ -65,23 +62,67 @@ class _ListDossierNonValiderState extends State<ListDossierNonValider> {
                       ),
                       columns: [
                         DataColumn(label: Text('Référence')),
-                        DataColumn(label: Text('juge')),
                         DataColumn(label: Text('Problème')),
-                        DataColumn(label: Text('Descréption')),
+                        DataColumn(label: Text('Etat Prob')),
                       ],
                       rows: [
-                        _buildDataRow('1', 'juge1', '', 'doss1'),
-                        _buildDataRow('2', 'juge2', '', 'doss2'),
-                        _buildDataRow('3', 'juge3', '', 'doss3'),
-                        _buildDataRow('4', 'juge4', '', 'doss4'),
-                        _buildDataRow('5', 'juge5', '', 'doss5'),
-                        _buildDataRow('6', 'juge6', '', 'doss6'),
-                        _buildDataRow('7', 'juge7', '', 'doss7'),
-                        _buildDataRow('8', 'juge8', '', 'doss8'),
-                        _buildDataRow('9', 'juge9', '', 'doss9'),
-                        _buildDataRow('10', 'juge10', '', 'doss10'),
-                        _buildDataRow('11', 'juge11', '', 'doss11'),
-                        // Add more rows as needed
+                        _buildDataRow('1', 'Juge1', '',
+                            'Dossier sans problème résolu', context),
+                        // No problem, green check, and resolved
+                        _buildDataRow(
+                            '2',
+                            'Juge2',
+                            'Problème',
+                            'Dossier avec problème non résolu',
+                            context), // Problem, red cross, and not resolved
+                        _buildDataRow(
+                            '3',
+                            'Juge3',
+                            'Problème',
+                            'Dossier avec problème résolu',
+                            context), // Problem, red cross, and resolved
+                        _buildDataRow(
+                            '4',
+                            'Juge4',
+                            '',
+                            'Dossier sans problème résolu',
+                            context), // No problem, green check, and resolved
+                        _buildDataRow(
+                            '5',
+                            'Juge5',
+                            'Problème',
+                            'Dossier avec problème résolu',
+                            context), // Problem, red cross, and resolved
+                        _buildDataRow(
+                            '6',
+                            'Juge6',
+                            '',
+                            'Dossier sans problème résolu',
+                            context), // No problem, green check, and resolved
+                        _buildDataRow(
+                            '7',
+                            'Juge7',
+                            'Problème',
+                            'Dossier avec problème non résolu',
+                            context), // Problem, red cross, and not resolved
+                        _buildDataRow(
+                            '8',
+                            'Juge8',
+                            '',
+                            'Dossier sans problème résolu',
+                            context), // No problem, green check, and resolved
+                        _buildDataRow(
+                            '9',
+                            'Juge9',
+                            'Problème',
+                            'Dossier avec problème non résolu',
+                            context), // Problem, red cross, and not resolved
+                        _buildDataRow(
+                            '10',
+                            'Juge10',
+                            '',
+                            'Dossier sans problème résolu',
+                            context), // No problem, green check, and resolved
                       ],
                     ),
                   ),
@@ -95,17 +136,42 @@ class _ListDossierNonValiderState extends State<ListDossierNonValider> {
   }
 
   DataRow _buildDataRow(
-      String reference, String juge, String probleme, String description) {
-    return DataRow(cells: [
-      DataCell(Text(reference)),
-      DataCell(Text(juge)),
-      DataCell(Text(probleme)),
-      DataCell(
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Text(description),
+    String reference,
+    String juge,
+    String probleme,
+    String description,
+    BuildContext context, // Ajout du paramètre BuildContext
+  ) {
+    bool hasProblem = probleme.isNotEmpty;
+    bool isProblemNotResolved =
+        description.toLowerCase().contains('non résolu');
+
+    return DataRow(
+      cells: [
+        DataCell(Text(reference)),
+        DataCell(
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/DetailsDossierPre');
+            },
+            child: hasProblem
+                ? Icon(Icons.close, color: Colors.red)
+                : Icon(Icons.check, color: Colors.green),
+          ),
         ),
-      ),
-    ]);
+        DataCell(
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/DetailsDossierPre');
+            },
+            child: hasProblem
+                ? isProblemNotResolved
+                    ? Text(' non résolu')
+                    : Text('Résolu')
+                : Container(),
+          ),
+        ),
+      ],
+    );
   }
 }
