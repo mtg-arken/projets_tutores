@@ -20,6 +20,7 @@ class LoginPage extends StatelessWidget {
 
       if (response.statusCode== 201) {
         var responseData = jsonDecode(response.body);
+        print('responseData: $responseData');
         if(responseData['user']['role']=='juge'){
           Navigator.pushReplacementNamed(context, '/juge');
         }

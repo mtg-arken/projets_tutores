@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../President_Jury/accueil_president.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;

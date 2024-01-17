@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/CreateDossier',
+      initialRoute: '/juge',
       routes: {
         '/login': (context) => LoginPage(),
         '/president': (context) => AccueilPresident(),
