@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/ListDossierNonValider',
+      initialRoute: '/ListDossierValider',
       routes: {
         '/login': (context) => LoginPage(),
         '/president': (context) => AccueilPresident(),
@@ -36,7 +36,6 @@ class MyApp extends StatelessWidget {
         '/DetailsDossierPre': (context) => DetailsDossierPre(
               data: {},
             ),
-        // Fix: Pass a default value or provide the actual reference
       },
       debugShowCheckedModeBanner: false,
     );
