@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
-import '../Common_Pages/common_app_bar.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class DetailsDossier extends StatefulWidget {
   final String refs;
@@ -15,53 +12,26 @@ class DetailsDossier extends StatefulWidget {
 }
 
 class _DetailsDossierState extends State<DetailsDossier> {
-  Map<String, String> data = {};
-  bool showProblemInputs = false; // Track whether to show the problem inputs
+  Map<String, String> data = {
+    'President_Chambre': 'arken',
+    'Juge': 'loufa',
+    'Problem': 'true',
+    'type de problem': 'visite',
+    'lieu': 'monastir',
+    'date problem': '2024-01-17 03-14-12',
+    //'date_negotiation': '2024-01-18 09-30-00',
+  };
+
+  bool showProblemInputs = false;
   TextEditingController dateController = TextEditingController();
   final format = DateFormat("yyyy-MM-dd");
   bool visiteChecked = false;
   bool temoignageChecked = false;
-  TextEditingController lieuController =
-      TextEditingController(); // New controller for lieu
+  TextEditingController lieuController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    fetchData();
-  }
-
-  Future<void> fetchData() async {
-    String ref = widget.refs;
-    Map<String, dynamic>? responseData;
-
-    try {
-      final response = await http.post(
-        Uri.parse('http://10.0.2.2:5000/api/dossier/GetDossierByRef'),
-        body: jsonEncode({
-          'Ref': ref,
-        }),
-        headers: {'Content-Type': 'application/json'},
-      );
-      if (response.statusCode == 200) {
-        responseData = jsonDecode(response.body);
-        print('Dossier object: $responseData');
-      } else {
-        print('Error: ${response.statusCode}, ${response.reasonPhrase}');
-      }
-    } catch (error) {
-      print('Error: $error');
-    }
-
-    if (responseData != null) {
-      Map<String, String> stringData = {};
-      responseData.forEach((key, value) {
-        stringData[key] = value.toString();
-      });
-      setState(() {
-        data = stringData;
-      });
-      print('aaaa: $data');
-    }
   }
 
   @override
@@ -86,7 +56,6 @@ class _DetailsDossierState extends State<DetailsDossier> {
             Text('Ref: ${widget.refs}',
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 20.0),
-            // Replace ListView.builder with Column and children
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -114,9 +83,7 @@ class _DetailsDossierState extends State<DetailsDossier> {
 
     if (key == 'Problem') {
       value = data[key] == 'false' ? 'pas de probleme' : 'probleme';
-
       if (data[key] == 'false') {
-        // If problem is false, show checkbox
         return Column(
           children: [
             CheckboxListTile(
@@ -183,12 +150,67 @@ class _DetailsDossierState extends State<DetailsDossier> {
           ],
         );
       }
-    } else if (key == 'status') {
-      value = data[key] == 'false' ? 'Pas encore valider' : 'valider';
+    } else if (key == 'date_negotiation') {
+      value = data[key];
+      return Column(
+        children: [
+          ListTile(
+            title: Text('$key: $value'),
+          ),
+          TextFormField(
+            decoration: InputDecoration(labelText: 'Description'),
+            // Add controller or handling logic as needed
+          ),
+        ],
+      );
     } else {
       value = data[key];
+      return ListTile(
+        title: Text('$key: $value'),
+      );
     }
 
+/*
+  if (key == 'date_negotiation') {
+    // If key is date_negotiation, add an input for description only once
+    return Column(
+      children: [
+        ListTile(
+          title: Text('$key: $value'),
+        ),
+        TextFormField(
+          decoration: InputDecoration(labelText: 'Description'),
+          // Add controller or handling logic as needed
+        ),
+      ],
+    );
+  }
+
+  if (data['Problem'] == 'true') {
+    // If problem is true, check for date_negotiation
+    bool hasDateNegotiation = data.containsKey('date_negotiation');
+    return Column(
+      children: [
+        ListTile(
+          title: Text('$key: $value'),
+        ),
+        if (hasDateNegotiation)
+          ListTile(
+            title: Text('Date Negotiation: ${data['date_negotiation']}'),
+          ),
+        if (hasDateNegotiation)
+          TextFormField(
+            decoration: InputDecoration(labelText: 'Description'),
+            // Add controller or handling logic as needed
+          ),
+        if (!hasDateNegotiation)
+          ListTile(
+            title: Text('Date Negotiation: Pas encore'),
+          ),
+      ],
+    );
+  }
+*/
     return ListTile(
       title: Text('$key: $value'),
     );
