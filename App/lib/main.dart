@@ -23,22 +23,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-
-
-      initialRoute: '/juge',
-
+      initialRoute: '/ListDossierNonValider',
       routes: {
         '/login': (context) => LoginPage(),
-
         '/president': (context) => AccueilPresident(),
         '/CreateDossier': (context) => CreateDossier(),
         '/ListDossierValider': (context) => ListDossierValider(),
         '/ListDossierNonValider': (context) => ListDossierNonValider(),
         '/ListJuge': (context) => ListJuge(),
-        
         '/juge': (context) => AccueilJuge(),
-        '/DtailsDossier': (context) => DetailsDossier(refs:''),
-        '/DetailsDossierPre': (context) => DetailsDossierPre(),
+        '/DtailsDossier': (context) => DetailsDossier(refs: ''),
+        '/DetailsDossierPre': (context) => DetailsDossierPre(
+              data: {},
+            ),
+        // Fix: Pass a default value or provide the actual reference
       },
       debugShowCheckedModeBanner: false,
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tribunal/President_Jury/detailesDossiePre.dart';
 import '../Common_Pages/common_app_bar.dart';
 
 class ListDossierNonValider extends StatefulWidget {
@@ -152,7 +153,13 @@ class _ListDossierNonValiderState extends State<ListDossierNonValider> {
         DataCell(
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/DetailsDossierPre');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailsDossierPre(
+                      data: {},
+                    ),
+                  ));
             },
             child: hasProblem
                 ? Icon(Icons.close, color: Colors.red)
