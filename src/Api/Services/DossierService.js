@@ -1,11 +1,13 @@
 const Dossier = require("../Models/DossierModel");
 const mongoose = require("mongoose");
 
-const CreateNewDossier = (reference, userID, JugeID) => {
+const CreateNewDossier = ( reference, description , jury, dateAudience, president ) => {
   return Dossier.create({
     reference: reference,
-    juge1: userID,
-    juge2: JugeID,
+    juge1: president,
+    juge2: jury,
+    date_audience:dateAudience,
+    description:description
   });
 };
 const FindDossierById = (id) => {

@@ -8,6 +8,11 @@ const FindUserById = (id) => {
 const FindUserByCin = (cin) => {
   return User.findOne({ cin: cin });
 };
+
+const FindJurys = (cin) => {
+  return User.find({ role: "juge" });
+};
+
 const CreateNewUser = (Password,Email,UserName,Cin,Role,telephone) => {
   
   return User.create({
@@ -23,5 +28,6 @@ const CreateNewUser = (Password,Email,UserName,Cin,Role,telephone) => {
 module.exports = {
   FindUserByCin,
   FindUserById,
-  CreateNewUser
+  CreateNewUser,
+  FindJurys
 };

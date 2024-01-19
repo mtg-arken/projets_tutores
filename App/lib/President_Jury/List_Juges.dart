@@ -37,16 +37,9 @@ class ListJuge extends StatelessWidget {
               ),
             ),
             // DataTable
-            Material(
-              elevation: 8.0,
-              borderRadius: BorderRadius.circular(20.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey, // Color for the table border
-                  ),
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: FittedBox(

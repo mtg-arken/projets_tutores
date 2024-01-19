@@ -8,20 +8,20 @@ const { FindUserById } = require("../Services/UserService");
 
 const CreateDossier = async (req, res) => {
   try {
-    const { reference, JugeID } = req.body;
-    const userID = req.params.userID;
-    const ExistingUser = await FindUserById(userID);
+    const { reference, description , jury, dateAudience, president} = req.body;
+    const ExistingUser = await FindUserById(president);
     if (!ExistingUser) {
       throw new Error("president de chambre not found ");
     }
     if (ExistingUser.role != "President de chambre") {
       throw new Error("User not allowed to create dossier ");
     }
-    const ExistingJuge = await FindUserById(JugeID);
+    const ExistingJuge = await FindUserById(jury);
     if (!ExistingJuge) {
       throw new Error("juge not found ");
     }
-    const dossier = await CreateNewDossier(reference, userID, JugeID);
+    const dossier = await CreateNewDossier(reference, description , jury, dateAudience, president);
+    console.log(dossier)
     return res.json(dossier);
   } catch (error) {
     return res.status(400).json({ error: error.message });

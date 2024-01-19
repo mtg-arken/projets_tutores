@@ -4,6 +4,7 @@ const auth = require("./Api/Routes/AuthRoute");
 const dossier = require("./Api/Routes/DossierRoute");
 const problem = require("./Api/Routes/ProblemRoute");
 const rapport = require("./Api/Routes/RapportRoute");
+const user = require("./Api/Routes/UserRoute");
 
 
 const cookieParser = require('cookie-parser');
@@ -65,6 +66,9 @@ const createApp = () => {
   app.use("/api/dossier", dossier);
   app.use("/api/problem", problem);
   app.use("/api/rapport", rapport);
+  app.use("/api/user", user);
+
+  
   /*
   app.all("*", (req, res) =>
     res.status(404).json({ statusCode: 404, success: false, data: `not found` })

@@ -15,11 +15,11 @@ class _DetailsDossierState extends State<DetailsDossier> {
   Map<String, String> data = {
     'President_Chambre': 'arken',
     'Juge': 'loufa',
-    'Problem': 'true',
+    'Problem': 'false',
     'type de problem': 'visite',
     'lieu': 'monastir',
     'date problem': '2024-01-17 03-14-12',
-    //'date_negotiation': '2024-01-18 09-30-00',
+    'date_negotiation': '2024-01-18 09-30-00',
   };
 
   bool showProblemInputs = false;

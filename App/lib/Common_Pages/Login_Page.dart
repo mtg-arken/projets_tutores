@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:provider/provider.dart';
+import 'package:tribunal/Common_Pages/user.data.dart';
 
 class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<UserData>(
+      create: (context) => UserData(),
+      child: _LoginPage(),
+    );
+  }
+}
+class _LoginPage extends StatelessWidget {
   void _login(BuildContext context) async {
     String cin = _cinValue.text;
     String password = _passwordValue.text;
-
+    String tt;
     print('CIN: $cin, Password: $password');
     try {
       final response = await http.post(
@@ -18,14 +29,19 @@ class LoginPage extends StatelessWidget {
         headers: {'Content-Type': 'application/json'},
       );
 
-      if (response.statusCode== 201) {
+      if (response.statusCode == 201) {
         var responseData = jsonDecode(response.body);
         print('responseData: $responseData');
-        if(responseData['user']['role']=='juge'){
+        Provider.of<UserData>(context, listen: false).userId =
+            responseData['user']['_id'];
+        tt = responseData['user']['_id'];
+        print('Error: $tt');
+        if (responseData['user']['role'] == 'juge') {
           Navigator.pushReplacementNamed(context, '/juge');
-        }
-        else{
-           Navigator.pushReplacementNamed(context, '/president');
+        } else {
+          // Save user id to Provider
+
+          Navigator.pushReplacementNamed(context, '/president');
         }
       } else {
         print('Error: ${response.statusCode}, ${response.reasonPhrase}');
