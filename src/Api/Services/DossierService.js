@@ -17,6 +17,9 @@ const FindDossierById = (id) => {
 const FindDossierByIdJuge = (id) => {
   return Dossier.find({juge2:id})
 };
+const FindDossierByIdPresident = (id) => {
+  return Dossier.find({juge1:id}).populate('problem')
+};
 const FindDossierByRef = (ref) => {
   return Dossier.findOne({reference:ref}).populate('juge1').populate('juge2').populate('problem')
 };
@@ -25,5 +28,6 @@ module.exports = {
   CreateNewDossier,
   FindDossierById,
   FindDossierByIdJuge,
-  FindDossierByRef
+  FindDossierByRef,
+  FindDossierByIdPresident
 };

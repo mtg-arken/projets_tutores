@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tribunal/juge/Details_Dossier.dart';
 import '../Common_Pages/common_app_bar.dart';
 
 class ListDossierValider extends StatelessWidget {
@@ -125,7 +124,7 @@ class MyTable extends StatelessWidget {
               ),
               DataCell(
                 Center(
-                  child: Text(dossier['status'].toString() ?? ''),
+                  child: Text(dossier['status'].toString() ),
                 ),
               ),
             ],

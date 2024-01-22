@@ -7,28 +7,36 @@ const ProblemSchema = new Schema(
     problem: { type: Boolean, default: false },
     problemType: {
       type: String,
-      enum: ["visite", "temoiage"],
+      enum: ["visite", "temoignage"],
       required: function () {
         return this.problem === true;
       },
     },
     description: {
       type: String,
-      required: function () {
+      /*required: function () {
         return this.problem === true
-      },
+      },*/
     },
-    date_audiance: {
+    /*date_visite: {
       type: Date,
       required: function () {
-        return this.problemType === "audiance";
+        return this.problemType === "visite";
       },
     },
-    date_negociation: {
+    date_temoignage: {
       type: Date,
       required: function () {
-        return this.problemType === "negociation";
+        return this.problemType === "temoignage";
       },
+    },*/
+    date_Prob: {
+      type: Date,
+    
+    },
+    date_negotiation: {
+      type: Date,
+    
     },
     lieu: {
       type: String,

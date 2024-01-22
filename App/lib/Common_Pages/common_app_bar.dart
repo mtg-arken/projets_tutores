@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_Page.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -34,7 +35,18 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           icon: Icon(Icons.logout),
-          onPressed: onLogout,
+          onPressed: () {
+            // Call the provided onLogout callback
+            onLogout();
+
+            // Navigate to the login page
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LoginPage(), // Replace with the actual login page
+              ),
+            );
+          },
         ),
       ],
       leading: shouldShowBackButton

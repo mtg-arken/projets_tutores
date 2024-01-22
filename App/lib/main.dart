@@ -42,9 +42,7 @@ class MyApp extends StatelessWidget {
         '/ListJuge': (context) => ListJuge(),
         '/juge': (context) => AccueilJuge(),
         '/DtailsDossier': (context) => DetailsDossier(refs: ''),
-        '/DetailsDossierPre': (context) => DetailsDossierPre(
-              data: {},
-            ),
+        '/DetailsDossierPre': (context) => DetailsDossierPre(ref: ""),
       },
       debugShowCheckedModeBanner: false,
     );

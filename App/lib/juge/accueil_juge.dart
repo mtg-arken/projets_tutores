@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tribunal/juge/Details_Dossier.dart';
 import '../Common_Pages/common_app_bar.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class AccueilJuge extends StatefulWidget {
   @override
@@ -8,7 +10,7 @@ class AccueilJuge extends StatefulWidget {
 }
 
 class _AccueilJugeState extends State<AccueilJuge> {
-  List<Map<String, String>> data = [];
+  List<Map<String, dynamic>> data = [];
 
   @override
   void initState() {
@@ -17,16 +19,27 @@ class _AccueilJugeState extends State<AccueilJuge> {
   }
 
   Future<void> fetchData() async {
-    await Future.delayed(Duration(seconds: 2));
+    try {
+      final response = await http.post(
+        Uri.parse('http://10.0.2.2:5000/api/dossier/GetJudgeDossiers'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({"JudgeId": '65a64f5f8853c577e0137fc6'}),
+      );
 
-    setState(() {
-      data = [
-        {'refs': 'n1', 'description': 'Description 1'},
-        {'refs': 'n2', 'description': 'Description 2'},
-        {'refs': 'n3', 'description': 'Description 3'},
+      if (response.statusCode == 200) {
+        List<Map<String, dynamic>> responseData =
+            (jsonDecode(response.body) as List).cast<Map<String, dynamic>>();
+        print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: $responseData');
 
-      ];
-    });
+        setState(() {
+          data = responseData;
+        });
+      } else {
+        throw Exception('Failed to load dossier details');
+      }
+    } catch (error) {
+      print('Error: $error');
+    }
   }
 
   void handleRowTap(DataRow row) {
@@ -40,7 +53,8 @@ class _AccueilJugeState extends State<AccueilJuge> {
 
     if (row.cells[1].child is Center &&
         (row.cells[1].child as Center).child is Text) {
-      description = ((row.cells[1].child as Center).child as Text).data ?? '';
+      description =
+          ((row.cells[1].child as Center).child as Text).data ?? '';
     }
 
     print('Row tapped - Refs: $refs, Description: $description');
@@ -53,14 +67,16 @@ class _AccueilJugeState extends State<AccueilJuge> {
     );
   }
 
+  void handleLogout() {
+    // Add your logout logic here, such as clearing user session, navigating to login screen, etc.
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(
         title: 'Accueil Juge',
-        onLogout: () {
-          // Add the logout logic here
-        },
+        onLogout: handleLogout, // Updated to use the handleLogout function
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -91,7 +107,7 @@ class _AccueilJugeState extends State<AccueilJuge> {
 }
 
 class MyTable extends StatelessWidget {
-  final List<Map<String, String>> data;
+  final List<Map<String, dynamic>> data;
   final Function(DataRow)? onRowTap;
 
   MyTable({required this.data, this.onRowTap});
@@ -120,18 +136,17 @@ class MyTable extends StatelessWidget {
           numeric: true,
         ),
       ],
-      rows: List<DataRow>.generate(
-        data.length,
-        (index) => DataRow(
+      rows: data.map((item) {
+        return DataRow(
           cells: [
             DataCell(
               Center(
-                child: Text(data[index]['refs'] ?? ''),
+                child: Text(item['Refs'] ?? ''), // Update to match your data structure
               ),
             ),
             DataCell(
               Center(
-                child: Text(data[index]['description'] ?? ''),
+                child: Text(item['Description'] ?? ''), // Update to match your data structure
               ),
             ),
           ],
@@ -141,20 +156,21 @@ class MyTable extends StatelessWidget {
                 onRowTap!(DataRow(cells: [
                   DataCell(
                     Center(
-                      child: Text(data[index]['refs'] ?? ''),
+                      child: Text(item['Refs'] ?? ''), // Update to match your data structure
                     ),
                   ),
                   DataCell(
                     Center(
-                      child: Text(data[index]['description'] ?? ''),
+                      child: Text(item['Description'] ?? ''), // Update to match your data structure
                     ),
                   ),
                 ]));
               }
             }
           },
-        ),
-      ),
+        );
+      }).toList(),
     );
   }
 }
+
